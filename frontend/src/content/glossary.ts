@@ -1,0 +1,63 @@
+/** Glossary (≥ 45 terms) used by hover cards, the command palette and the docs. */
+export interface GlossaryTerm {
+  term: string;
+  short: string;
+  category: 'quantum' | 'ml' | 'clinical' | 'stats';
+}
+
+export const GLOSSARY: GlossaryTerm[] = [
+  { term: 'Qubit', category: 'quantum', short: 'The quantum unit of information: a two-level system whose state is a superposition α|0⟩ + β|1⟩.' },
+  { term: 'Superposition', category: 'quantum', short: 'A qubit holding a weighted combination of |0⟩ and |1⟩ until it is measured.' },
+  { term: 'Entanglement', category: 'quantum', short: 'Correlation between qubits that cannot be described qubit-by-qubit; an entangled qubit’s Bloch vector is shorter than 1.' },
+  { term: 'Statevector', category: 'quantum', short: 'The 2ⁿ complex amplitudes describing an n-qubit pure state. Memory grows as 16 B × 2ⁿ.' },
+  { term: 'Bloch sphere', category: 'quantum', short: 'A geometric picture of one qubit: |0⟩ at the north pole, |1⟩ at the south pole, phases around the equator.' },
+  { term: 'Hadamard', category: 'quantum', short: 'The H gate: maps |0⟩ to |+⟩ = (|0⟩+|1⟩)/√2, creating an equal superposition.' },
+  { term: 'CNOT', category: 'quantum', short: 'Controlled-NOT: flips the target qubit when the control is |1⟩. The workhorse entangling gate.' },
+  { term: 'Rotation gate', category: 'quantum', short: 'RX, RY, RZ(θ): rotate the Bloch vector by angle θ about an axis. Used for data encoding and trainable parameters.' },
+  { term: 'Feature map', category: 'quantum', short: 'A circuit U_φ(x) that loads classical features x into a quantum state |φ(x)⟩.' },
+  { term: 'Data encoding', category: 'quantum', short: 'How numbers become quantum states: angle encoding, ZZ feature maps, amplitude encoding and others.' },
+  { term: 'Bandwidth', category: 'quantum', short: 'A scaling factor applied to features before encoding. Small bandwidth keeps states close together and fights kernel concentration.' },
+  { term: 'Kernel concentration', category: 'quantum', short: 'When off-diagonal quantum kernel values all collapse toward 0, the kernel matrix ≈ identity and the model cannot separate patients.' },
+  { term: 'Ansatz', category: 'quantum', short: 'The trainable part of a variational circuit, W(θ), e.g. RealAmplitudes or StronglyEntanglingLayers.' },
+  { term: 'PQC', category: 'quantum', short: 'Parameterized quantum circuit: gates whose rotation angles θ are learned by a classical optimizer.' },
+  { term: 'VQC', category: 'quantum', short: 'Variational quantum classifier: feature map + ansatz, read out as p = (1 + ⟨Z₀⟩)/2.' },
+  { term: 'QSVM', category: 'quantum', short: 'Quantum support-vector machine: a classical SVM using the quantum fidelity kernel |⟨φ(x)|φ(x′)⟩|².' },
+  { term: 'QNN', category: 'quantum', short: 'Quantum neural network: a PQC used as a differentiable model layer, often with multi-qubit read-out.' },
+  { term: 'QSVR', category: 'quantum', short: 'Quantum support-vector regression: the quantum kernel plugged into ε-SVR.' },
+  { term: 'VQR', category: 'quantum', short: 'Variational quantum regressor: expectation values rescaled to a continuous target.' },
+  { term: 'Parameter shift', category: 'quantum', short: 'Exact gradient rule: ∂f/∂θ = ½[f(θ + π/2) − f(θ − π/2)], evaluable on real hardware.' },
+  { term: 'Barren plateau', category: 'quantum', short: 'Exponentially vanishing gradients in deep or random circuits; training stalls. Shallow, local-cost circuits help.' },
+  { term: 'Shots', category: 'quantum', short: 'Repeated circuit executions used to estimate probabilities; error shrinks as 1/√shots.' },
+  { term: 'Decoherence', category: 'quantum', short: 'Loss of quantum information to the environment over time (T1, T2 processes).' },
+  { term: 'T1', category: 'quantum', short: 'Energy-relaxation time: how fast |1⟩ decays to |0⟩.' },
+  { term: 'T2', category: 'quantum', short: 'Dephasing time: how fast phase information (equatorial Bloch components) is lost.' },
+  { term: 'Depolarizing noise', category: 'quantum', short: 'With probability p the state is replaced by the maximally mixed state; the Bloch vector shrinks uniformly.' },
+  { term: 'Readout error', category: 'quantum', short: 'Probability of reporting the wrong bit when measuring; corrected by readout mitigation.' },
+  { term: 'ZNE', category: 'quantum', short: 'Zero-noise extrapolation: run at amplified noise levels and extrapolate the result back to zero noise.' },
+  { term: 'NISQ', category: 'quantum', short: 'Noisy intermediate-scale quantum: today’s devices with tens to hundreds of imperfect qubits.' },
+  { term: 'QPU', category: 'quantum', short: 'Quantum processing unit — real hardware, or a simulator standing in for it.' },
+  { term: 'Quantum kernel', category: 'quantum', short: 'Similarity k(x,x′) = |⟨φ(x)|φ(x′)⟩|² computed by preparing both states on a quantum device.' },
+  { term: 'Kernel alignment', category: 'quantum', short: 'How well a kernel matrix matches the label structure yyᵀ; higher is better.' },
+  { term: 'SHAP', category: 'ml', short: 'SHapley Additive exPlanations: per-feature contributions that add up to the prediction minus the baseline.' },
+  { term: 'Sensitivity', category: 'clinical', short: 'Recall / true-positive rate: TP / (TP + FN). The share of sick patients the model catches.' },
+  { term: 'Specificity', category: 'clinical', short: 'True-negative rate: TN / (TN + FP). The share of healthy patients correctly cleared.' },
+  { term: 'PPV', category: 'clinical', short: 'Positive predictive value (precision): TP / (TP + FP). How often a positive flag is right.' },
+  { term: 'NPV', category: 'clinical', short: 'Negative predictive value: TN / (TN + FN). How often a negative result is right.' },
+  { term: 'MCC', category: 'stats', short: 'Matthews correlation coefficient: a balanced single-number summary of the confusion matrix (−1 … 1).' },
+  { term: 'ROC-AUC', category: 'stats', short: 'Area under the ROC curve: probability a random positive scores above a random negative.' },
+  { term: 'PR-AUC', category: 'stats', short: 'Area under the precision–recall curve; informative under class imbalance.' },
+  { term: 'Calibration', category: 'stats', short: 'Whether predicted probabilities match observed frequencies (a 70% score should be right 70% of the time).' },
+  { term: 'Brier score', category: 'stats', short: 'Mean squared error of probabilities; lower is better, combines calibration and discrimination.' },
+  { term: 'SMOTE', category: 'ml', short: 'Synthetic minority over-sampling: interpolates new minority-class examples — training split only.' },
+  { term: 'PCA', category: 'ml', short: 'Principal component analysis: rotates features into uncorrelated components ordered by variance.' },
+  { term: 'Cross-validation', category: 'stats', short: 'k-fold CV: train on k−1 folds, test on the remaining one, repeat k times, report mean ± std.' },
+  { term: 'McNemar test', category: 'stats', short: 'Paired test on two classifiers’ disagreements on the same test cases.' },
+  { term: 'Wilcoxon test', category: 'stats', short: 'Non-parametric paired test on per-fold scores. With 5 folds the smallest achievable p is 0.0625.' },
+  { term: 'Risk stratification', category: 'clinical', short: 'Grouping patients into low / moderate / high bands so follow-up effort matches risk.' },
+  { term: "Youden's J", category: 'stats', short: 'J = sensitivity + specificity − 1; the threshold maximizing J balances both.' },
+  { term: 'Leakage', category: 'ml', short: 'Test information influencing training (e.g. scaling on all data). Inflates metrics; the leakage guard prevents it.' },
+  { term: 'Amplitude encoding', category: 'quantum', short: 'Stores a normalized 2ⁿ-vector in the amplitudes of n qubits — exponentially compact, but costly to prepare.' },
+  { term: 'Angle encoding', category: 'quantum', short: 'Each feature xᵢ becomes a rotation angle on its own qubit, e.g. RY(xᵢ). Needs one qubit per feature.' },
+];
+
+export const findTerm = (t: string) => GLOSSARY.find((g) => g.term.toLowerCase() === t.toLowerCase());
